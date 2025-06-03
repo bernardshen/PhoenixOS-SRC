@@ -25,7 +25,10 @@
 POSAgentConf::POSAgentConf(POSAgent *root_agent) : _root_agent(root_agent), _pid(0) {}
 
 
+// 加载配置，默认从 ./pos.yaml 中加载
 pos_retval_t POSAgentConf::load_config(std::string &&file_path){
+    POS_LOG_C("load_config: %s", file_path.c_str());
+
     pos_retval_t retval = POS_SUCCESS;
     YAML::Node config;
 

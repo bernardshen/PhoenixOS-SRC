@@ -20,11 +20,11 @@ from transformers import AutoTokenizer, AutoModelForCausalLM, TextStreamer
 
 coldstart_start_time = time.time()
 
-model = AutoModelForCausalLM.from_pretrained('/data/huggingface/hub/Llama-2-13b-chat-hf/')
-tokenizer = AutoTokenizer.from_pretrained('/data/huggingface/hub/Llama-2-13b-chat-hf/')
+model = AutoModelForCausalLM.from_pretrained('./model', ignore_mismatched_sizes=True)
+tokenizer = AutoTokenizer.from_pretrained('./tokenizer')
 
 # fp16
-# model = model.half()
+model = model.half()
 
 # copy to device
 model = model.to('cuda:0')
