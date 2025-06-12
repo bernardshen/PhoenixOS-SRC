@@ -15,7 +15,7 @@ We have already built a docker image for running this example (`phoenixos/pytorc
 
 ```bash
 cd [REPO PATH]
-docker run -dit --gpu all --privileged  --ipc=host --network=host \
+docker run -dit --gpus all --privileged  --ipc=host --network=host \
             -v .:/root --name phos_example phoenixos/pytorch:11.3-ubuntu20.04
 
 docker exec -it phos_example /bin/bash
