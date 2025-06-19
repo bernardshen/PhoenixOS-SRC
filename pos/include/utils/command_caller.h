@@ -53,20 +53,26 @@ class POSUtil_Command_Caller {
             cmd = cmd + std::string(" 2>&1");
         }
 
-        // pipe = popen(cmd.c_str(), "r");
-        std::string cmd_str = "gdbserver :1234 " + cmd;
-        pipe = popen(cmd_str.c_str(), "r");
+        pipe = popen(cmd.c_str(), "r");
+        // std::string cmd_str = "gdbserver :1234 " + cmd;
+        // pipe = popen(cmd_str.c_str(), "r");
         if (unlikely(pipe == nullptr)) {
             POS_WARN("failed to open pipe for executing command %s", cmd.c_str());
             retval = POS_FAILED;
             goto exit;
         }
 
+        printf("!!!!!Starting POS\n");
         result.clear();
         while (fgets(buffer.data(), buffer.size(), pipe) != nullptr) {
             result += buffer.data();
-            if(print_stdout){ std::cout << buffer.data(); }
+            // printf("!!!!!buffer: %s\n", buffer.data());
+            if(print_stdout){ 
+                std::cout << buffer.data(); 
+                fflush(stdout);
+            }
         }
+        std::cout << "result: " << result << std::endl;
 
         // remove \n and \r
         while (!result.empty() && (result.back() == '\n' || result.back() == '\r')) {

@@ -64,6 +64,7 @@ pos_retval_t POSWorkspace_CUDA::__init(){
         }
     );
 
+    POS_DEBUG_C("Initializing CUDA driver with cuInit");
     dr_retval = cuInit(0);
     if(unlikely(dr_retval != CUDA_SUCCESS)){
         POS_ERROR_C_DETAIL("failed to initialize CUDA driver: dr_retval(%d)", dr_retval);

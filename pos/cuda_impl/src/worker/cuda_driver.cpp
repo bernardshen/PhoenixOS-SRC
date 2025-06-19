@@ -49,6 +49,7 @@ namespace cu_module_load {
             /* module */ &module,
             /* image */  pos_api_param_addr(wqe, 1)
         );
+        POS_DEBUG_C("cuModuleLoadData return code: %d\n", wqe->api_cxt->return_code);
         if(likely(CUDA_SUCCESS == wqe->api_cxt->return_code)){
             module_handle->set_server_addr((void*)module);
             module_handle->mark_status(kPOS_HandleStatus_Active); // TODO: remove this

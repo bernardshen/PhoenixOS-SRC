@@ -148,7 +148,7 @@ POSWorkspace::POSWorkspace() :
     ws_conf(this)
 {
     // create out-of-band server
-    _oob_server = new POSOobServer(
+    _oob_server = new POSOobServer( // pos/include/oob.h
         /* ws */ this,
         /* callback_handlers */ {
             {   kPOS_OOB_Msg_Agent_Register_Client,     oob_functions::agent_register_client::sv    },
@@ -411,7 +411,7 @@ int POSWorkspace::pos_process(
     api_meta = api_mgnr->api_metas[api_id];
 
     // generate new work queue element
-    wqe = new POSAPIContext_QE(
+    wqe = new POSAPIContext_QE( // pos/src/api_context.cpp
         /* api_id*/ api_id,
         /* uuid */ uuid,
         /* param_desps */ param_desps,

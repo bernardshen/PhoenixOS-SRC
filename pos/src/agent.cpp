@@ -110,6 +110,7 @@ POSAgent::POSAgent() : _agent_conf(this) {
         POS_ERROR_C("failed to load agent configuration");
     }
 
+    // pos/include/oob.h
     this->_pos_oob_client = new POSOobClient(
         /* agent */ this,
         /* req_functions */ {

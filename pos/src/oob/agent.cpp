@@ -52,7 +52,7 @@ namespace agent_register_client {
 
         // create client
         if(unlikely(POS_SUCCESS != (
-            retval = ws->create_client(create_param, &clnt)
+            retval = ws->create_client(create_param, &clnt) // pos/cuda_impl/src/workspace.cpp
         ))){
             POS_WARN("failed to create client: job_name(%s)", payload->job_name);
             goto exit;
